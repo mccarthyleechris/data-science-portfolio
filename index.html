@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chris McCarthy | Data Science Portfolio</title>
+  <meta name="description" content="Data science portfolio of Chris McCarthy: regression, classification, NLP, deep learning and data storytelling with public data on electric vehicles, public health and entertainment.">
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #171d24;
+      --border: #26303b;
+      --text: #e6e9ec;
+      --muted: #9aa5b1;
+      --accent: #4fb3a9;
+      --accent-soft: rgba(79, 179, 169, 0.12);
+      --warn: #e0b45a;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6; font-size: 17px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(15, 20, 25, 0.92); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+    nav .brand { font-weight: 700; color: var(--text); }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul a { color: var(--muted); font-size: 15px; }
+    nav ul a:hover { color: var(--text); text-decoration: none; }
+
+    header.hero { padding: 96px 0 72px; border-bottom: 1px solid var(--border); }
+    .eyebrow { color: var(--accent); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .hero h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.1; margin: 12px 0 20px; }
+    .hero p.lede { font-size: 20px; color: var(--muted); max-width: 720px; }
+    .stats { display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap; }
+    .stats div strong { display: block; font-size: 28px; color: var(--text); }
+    .stats div span { color: var(--muted); font-size: 14px; }
+    .cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 11px 20px; border-radius: 6px; font-weight: 600; font-size: 15px; border: 1px solid var(--accent); }
+    .btn.primary { background: var(--accent); color: #0b1013; }
+    .btn.ghost { color: var(--accent); }
+    .btn:hover { text-decoration: none; opacity: 0.9; }
+
+    section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    section h2 { font-size: 30px; margin-bottom: 8px; }
+    section .sub { color: var(--muted); margin-bottom: 40px; max-width: 700px; }
+    h3.group { font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 56px 0 20px; }
+
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; }
+    .about-grid p + p { margin-top: 16px; }
+    .skills h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; }
+    .skills h4:not(:first-child) { margin-top: 24px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+
+    .projects { display: grid; gap: 24px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 28px; display: grid; grid-template-columns: 1fr 340px; gap: 32px;
+    }
+    .card h4 { font-size: 22px; line-height: 1.3; margin: 4px 0 8px; }
+    .domain { color: var(--accent); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .badge { display: inline-block; margin-left: 8px; font-size: 11px; padding: 2px 8px; border-radius: 999px; color: var(--warn); border: 1px solid var(--warn); vertical-align: middle; }
+    .card dl { margin-top: 12px; }
+    .card dt { font-weight: 600; font-size: 14px; color: var(--muted); margin-top: 12px; }
+    .card dd { margin-top: 2px; }
+    .card .tags { margin-top: 18px; }
+    .side { display: flex; flex-direction: column; gap: 14px; }
+    .side figure { background: #fff; border-radius: 8px; overflow: hidden; }
+    .side img { display: block; width: 100%; height: auto; }
+    .side figcaption { font-size: 13px; color: var(--muted); }
+    .metric { background: var(--accent-soft); border-radius: 8px; padding: 18px 20px; }
+    .metric strong { display: block; font-size: 30px; color: var(--accent); line-height: 1.2; }
+    .metric span { font-size: 14px; color: var(--muted); }
+    .links { display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+
+    .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .mini { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .mini h4 { font-size: 19px; line-height: 1.3; }
+    .mini p { color: var(--muted); font-size: 16px; }
+    .mini .metric { padding: 12px 16px; }
+    .mini .metric strong { font-size: 24px; }
+    .mini .links { margin-top: auto; }
+
+    .contact-list { list-style: none; display: grid; gap: 14px; font-size: 18px; }
+    .contact-list span { display: inline-block; width: 110px; color: var(--muted); font-size: 15px; }
+
+    footer { padding: 32px 0; color: var(--muted); font-size: 14px; text-align: center; }
+
+    @media (max-width: 820px) {
+      nav ul { gap: 16px; }
+      .about-grid, .card, .mini-grid { grid-template-columns: 1fr; }
+      header.hero { padding: 64px 0 48px; }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#top">Chris McCarthy</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="eyebrow">Data Science Portfolio</div>
+      <h1>Chris McCarthy</h1>
+      <p class="lede">
+        I use public data to answer practical questions, like how far an electric vehicle can go on one charge
+        or which groups in Washington are hospitalized most often for flu, COVID-19 and RSV. I've built data pipelines,
+        regression and classification models, and charts for people who don't read code.
+      </p>
+      <div class="stats">
+        <div><strong>8</strong><span>projects</span></div>
+        <div><strong>R² 0.93</strong><span>EV range model</span></div>
+        <div><strong>88%</strong><span>sentiment accuracy</span></div>
+        <div><strong>98.8%</strong><span>digit recognition</span></div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn ghost" href="https://github.com/mccarthyleechris/data-science-portfolio">GitHub repo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT (draft: edit to add your background and target role) -->
+  <section id="about">
+    <div class="wrap">
+      <h2>About</h2>
+      <p class="sub">Who I am and the kind of work I like doing.</p>
+      <div class="about-grid">
+        <div>
+          <p>
+            I'm a data science graduate student in Washington State, finishing my capstone coursework.
+            A lot of my projects use Washington's public data because I live here.
+          </p>
+          <p>
+            I like building on one topic over several projects. Electric vehicles are my running example. I started with
+            exploratory analysis of the state's EV registrations, built a pipeline that merged them with charging station and
+            policy data, then moved on to classification and regression models. My current project applies the same approach
+            to public health, looking at gaps in hospitalization rates for COVID-19, flu and RSV.
+          </p>
+          <p>
+            I spend as much time on the write-up as on the model. Most of my projects end with what the data can't show.
+            In the range project, for example, the figures come from manufacturers and ignore weather, speed and terrain.
+          </p>
+        </div>
+        <div class="skills">
+          <h4>Languages</h4>
+          <div class="tags"><span class="tag">Python</span><span class="tag">SQL (SQLite)</span></div>
+          <h4>Analysis &amp; ML</h4>
+          <div class="tags">
+            <span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">scikit-learn</span>
+            <span class="tag">TensorFlow / Keras</span><span class="tag">TextBlob</span><span class="tag">VADER</span>
+          </div>
+          <h4>Visualization</h4>
+          <div class="tags"><span class="tag">matplotlib</span><span class="tag">seaborn</span></div>
+          <h4>Data collection</h4>
+          <div class="tags"><span class="tag">Web scraping</span><span class="tag">REST APIs</span></div>
+          <h4>Tools</h4>
+          <div class="tags"><span class="tag">Jupyter</span><span class="tag">Git / GitHub</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="sub">Code, notebooks and data notes for each project are in the GitHub repo.</p>
+
+      <div class="projects">
+
+        <article class="card">
+          <div>
+            <div class="domain">Electric vehicles · Regression</div>
+            <h4>Predicting Electric Vehicle Driving Range</h4>
+            <dl>
+              <dt>Question</dt>
+              <dd>Which vehicle specs best predict how far an EV can drive on one charge?</dd>
+              <dt>Approach</dt>
+              <dd>Used 2025 specifications for 478 EV models. Compared a simple regression on battery capacity alone with a multiple regression that adds efficiency, torque and vehicle segment, then checked the residuals.</dd>
+              <dt>Result</dt>
+              <dd>Battery capacity alone explains 77% of the variation in range. The full model explains 93% (R² 0.93) and nearly halves the average error, from 49 km to 26 km.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Linear regression</span><span class="tag">EDA</span></div>
+          </div>
+          <div class="side">
+            <figure><img src="images/ev-range-actual-vs-predicted.png" alt="Scatter plot of actual versus predicted EV range, with points clustered along the diagonal"></figure>
+            <figcaption>Actual vs. predicted range on the test set.</figcaption>
+            <div class="links">
+              <a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/ev-range-prediction">Code &amp; notebook</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="domain">Public health · Washington State <span class="badge">In progress</span></div>
+            <h4>Respiratory Illness Hospitalizations Across Demographic Groups</h4>
+            <dl>
+              <dt>Question</dt>
+              <dd>Which race, ethnicity and age groups in Washington have the highest hospitalization rates for COVID-19, flu and RSV, and do those gaps hold across seasons and illnesses?</dd>
+              <dt>Approach</dt>
+              <dd>Washington Department of Health surveillance data for the 2024-25 and 2025-26 seasons. Rate comparisons, rate ratios against a reference group, and linear regression, written up as a white paper.</dd>
+              <dt>Why it matters</dt>
+              <dd>The results can help public health teams decide where to focus vaccination and outreach. The analysis notebook and draft figures are done.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Rate comparison</span><span class="tag">Regression</span></div>
+          </div>
+          <div class="side">
+            <figure><img src="images/respiratory-rates-over-time.png" alt="Line chart of weekly hospitalization rates per 100,000 for COVID-19, influenza and RSV, with sharp winter flu peaks"></figure>
+            <figcaption>Hospitalization rates over time for each illness (draft).</figcaption>
+            <div class="links">
+              <a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/respiratory-hospitalizations-wa">Code &amp; notebook</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="domain">Electric vehicles · Classification</div>
+            <h4>Washington EV Adoption Trends and Manufacturer Classification</h4>
+            <dl>
+              <dt>Question</dt>
+              <dd>How has EV adoption grown in Washington, and can a vehicle's traits predict whether it comes from a high-adoption manufacturer?</dd>
+              <dt>Approach</dt>
+              <dd>Explored about 270,000 registered EVs: growth by model year, the battery-electric versus plug-in hybrid split, and manufacturer share. Engineered features and trained decision tree and random forest classifiers.</dd>
+              <dt>Result</dt>
+              <dd>The random forest reached 81% accuracy and a single decision tree reached 77%, against a 64% baseline from always guessing the majority class. In the tree, whether a car is fully battery-electric was the most important feature.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Python</span><span class="tag">seaborn</span><span class="tag">Random forest</span><span class="tag">Feature engineering</span></div>
+          </div>
+          <div class="side">
+            <figure><img src="images/wa-ev-bev-vs-phev.png" alt="Line chart of registered EVs by model year, with battery-electric vehicles rising far faster than plug-in hybrids after 2020"></figure>
+            <figcaption>Battery-electric vs. plug-in hybrid registrations by model year.</figcaption>
+            <div class="links">
+              <a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/wa-ev-adoption-classification">Code &amp; notebook</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="domain">Data engineering · Wrangling</div>
+            <h4>EV and Charging Station Data Pipeline</h4>
+            <dl>
+              <dt>Question</dt>
+              <dd>How do EV counts compare with charging infrastructure across Washington cities?</dd>
+              <dt>Approach</dt>
+              <dd>Combined three sources into one SQLite database: the state's EV registration file, a federal table of EV laws and incentives scraped from the Alternative Fuels Data Center, and charging station data from the OpenChargeMap API. Each source was cleaned in five documented steps before merging.</dd>
+              <dt>Result</dt>
+              <dd>A single queryable database and charts comparing EV counts, charging stations and charge points by city.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Web scraping</span><span class="tag">REST API</span><span class="tag">SQLite</span><span class="tag">pandas</span></div>
+          </div>
+          <div class="side">
+            <figure><img src="images/pipeline-top-cities.png" alt="Bar chart of the ten Washington cities with the most EVs, led by Seattle"></figure>
+            <figcaption>Top Washington cities by EV count.</figcaption>
+            <div class="links">
+              <a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/ev-charging-data-pipeline">Code &amp; notebook</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <h3 class="group">More projects</h3>
+      <div class="mini-grid">
+
+        <article class="mini">
+          <div class="domain">Data storytelling</div>
+          <h4>Pitching an International Film to the Netflix Board</h4>
+          <p>Six visuals built from Netflix's public Top 10 data (272,000 country-week rows) to make the case for funding a film aimed at both English and non-English audiences. The pitch recommends spending most of the marketing budget on the launch window and targeting countries where similar films stayed in the Top 10 longest.</p>
+          <div class="metric"><strong>4 to 5 weeks</strong><span>median Top 10 run per country for the case-study films</span></div>
+          <div class="links"><a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/netflix-international-film-pitch">Code &amp; visuals</a></div>
+        </article>
+
+        <article class="mini">
+          <div class="domain">NLP</div>
+          <h4>Movie Review Sentiment Analysis</h4>
+          <p>Classified 25,000 IMDB reviews as positive or negative. Off-the-shelf tools (TextBlob, VADER) scored about 69%. Logistic regression on TF-IDF features reached 88%, and Naive Bayes reached 85%.</p>
+          <div class="metric"><strong>88% · AUC 0.95</strong><span>logistic regression accuracy</span></div>
+          <div class="links"><a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/movie-review-sentiment-nlp">Code &amp; notebook</a></div>
+        </article>
+
+        <article class="mini">
+          <div class="domain">Recommender systems</div>
+          <h4>Movie Recommendations with Collaborative Filtering</h4>
+          <p>A k-nearest-neighbors recommender on the MovieLens ratings data. Enter a title and get the ten most similar films based on how users rated them. Toy Story returns Toy Story 2, The Lion King and Jurassic Park.</p>
+          <div class="metric"><strong>Top 10</strong><span>similar films by cosine similarity</span></div>
+          <div class="links"><a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/movie-recommender">Code &amp; notebook</a></div>
+        </article>
+
+        <article class="mini">
+          <div class="domain">Deep learning</div>
+          <h4>Handwritten Digit Recognition with a CNN</h4>
+          <p>A convolutional neural network with two convolutional layers, trained on the 70,000-image MNIST dataset in TensorFlow/Keras. A confusion matrix shows which digits the model still mixes up.</p>
+          <div class="metric"><strong>98.8%</strong><span>test accuracy after five epochs</span></div>
+          <div class="links"><a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/mnist-digit-cnn">Code &amp; notebook</a></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (add your email and LinkedIn) -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p class="sub">I'm open to data science and analytics roles. Email is the fastest way to reach me.</p>
+      <ul class="contact-list">
+        <li><span>Email</span><a href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/YOUR-HANDLE">linkedin.com/in/YOUR-HANDLE</a></li>
+        <li><span>GitHub</span><a href="https://github.com/mccarthyleechris">github.com/mccarthyleechris</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>© 2026 Chris McCarthy · Built with GitHub Pages</footer>
+
+</body>
+</html>
