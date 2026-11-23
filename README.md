@@ -21,4 +21,3 @@ Python, pandas, NumPy, scikit-learn, TensorFlow/Keras, matplotlib, seaborn, SQLi
 ## Contact
 - GitHub: [mccarthyleechris](https://github.com/mccarthyleechris)
 - Email: YOUR-EMAIL@example.com
-- LinkedIn: YOUR-LINKEDIN-URL
