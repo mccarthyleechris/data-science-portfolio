@@ -129,7 +129,7 @@
         regression and classification models, and aim to make my discoveries as easily understood as possible.
       </p>
       <div class="stats">
-        <div><strong>8</strong><span>projects</span></div>
+        <div><strong>9</strong><span>projects</span></div>
         <div><strong>R² 0.93</strong><span>EV range model</span></div>
         <div><strong>88%</strong><span>sentiment accuracy</span></div>
         <div><strong>98.8%</strong><span>digit recognition</span></div>
@@ -211,23 +211,48 @@
 
         <article class="card">
           <div>
-            <div class="domain">Public health · Washington State <span class="badge">In progress</span></div>
+            <div class="domain">Public health · Washington State</div>
             <h4>Respiratory Illness Hospitalizations Across Demographic Groups</h4>
             <dl>
               <dt>Question</dt>
-              <dd>Which race, ethnicity and age groups in Washington have the highest hospitalization rates for COVID-19, flu and RSV, and do those gaps hold across seasons and illnesses?</dd>
+              <dd>Which race, ethnicity and age groups in Washington are hospitalized most often for COVID-19, flu and RSV, and do the gaps hold from one season to the next?</dd>
               <dt>Approach</dt>
-              <dd>Washington Department of Health surveillance data for the 2024-25 and 2025-26 seasons. Rate comparisons, rate ratios against a reference group, and linear regression, written up as a white paper.</dd>
-              <dt>Why it matters</dt>
-              <dd>The results can help public health teams decide where to focus vaccination and outreach. The analysis notebook and draft figures are done.</dd>
+              <dd>Washington Department of Health RESP-NET data for the 2024-25 and 2025-26 seasons (58,644 rows). Rate ratios against White residents, then a log-linear regression checked with 5-fold cross-validation.</dd>
+              <dt>Result</dt>
+              <dd>Native Hawaiian and Pacific Islander residents were hospitalized at 2.3 to 4.7 times the White rate, and Black residents at 1.3 to 2.1 times. The gaps barely changed between seasons (correlation 0.99). Adding race raised the model's cross-validated R² from 0.36 to 0.52.</dd>
             </dl>
-            <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Rate comparison</span><span class="tag">Regression</span></div>
+            <div class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Rate ratios</span><span class="tag">Regression</span><span class="tag">Cross-validation</span></div>
           </div>
           <div class="side">
-            <figure><img src="images/respiratory-rates-over-time.png" alt="Line chart of weekly hospitalization rates per 100,000 for COVID-19, influenza and RSV, with sharp winter flu peaks"></figure>
-            <figcaption>Hospitalization rates over time for each illness (draft).</figcaption>
+            <figure><img src="images/respiratory-rates-over-time.png" alt="Line chart of 4-week hospitalization rates for COVID-19, influenza and RSV from October 2024 to September 2026, with winter flu peaks"></figure>
+            <figcaption>Hospitalization rates by illness, 2024 to 2026.</figcaption>
             <div class="links">
               <a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/respiratory-hospitalizations-wa">Code &amp; notebook</a>
+              <a href="https://github.com/mccarthyleechris/data-science-portfolio/blob/main/respiratory-hospitalizations-wa/report/respiratory_hospitalizations_white_paper.pdf">White paper (PDF)</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="domain">Public health · Washington State</div>
+            <h4>Vaccination Coverage vs. Respiratory Hospitalizations</h4>
+            <dl>
+              <dt>Question</dt>
+              <dd>Is higher vaccination coverage linked to lower hospitalization rates across groups, and which groups combine low coverage with high hospitalization?</dd>
+              <dt>Approach</dt>
+              <dd>Matched 13 state vaccination coverage tables to the RESP-NET hospitalization data. Spearman correlations, a regression with leave-one-group-out validation and a bootstrap interval, and a priority matrix for outreach planning.</dd>
+              <dt>Result</dt>
+              <dd>Native Hawaiian and Pacific Islander and Black residents had below-statewide coverage and above-average hospitalization for flu and COVID-19 in both seasons, which makes them the clearest outreach priorities. The overall link between coverage and hospitalization was weak and depended on which groups were included.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Python</span><span class="tag">SciPy</span><span class="tag">scikit-learn</span><span class="tag">Spearman correlation</span><span class="tag">Data matching</span></div>
+          </div>
+          <div class="side">
+            <figure><img src="images/vaccination-priority-matrix.png" alt="Scatter plot of each group's coverage gap against its hospitalization rate ratio, with NH/PI and Black residents in the low-coverage, high-burden corner"></figure>
+            <figcaption>Priority matrix, 2025-26 season.</figcaption>
+            <div class="links">
+              <a href="https://github.com/mccarthyleechris/data-science-portfolio/tree/main/vaccination-coverage-hospitalizations-wa">Code &amp; notebook</a>
+              <a href="https://github.com/mccarthyleechris/data-science-portfolio/blob/main/vaccination-coverage-hospitalizations-wa/report/vaccination_coverage_white_paper.pdf">White paper (PDF)</a>
             </div>
           </div>
         </article>
