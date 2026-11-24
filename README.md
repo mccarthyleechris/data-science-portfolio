@@ -13,7 +13,8 @@ Projects in regression, classification, NLP, deep learning, data engineering and
 | Movie Review Sentiment Analysis | TF-IDF, TextBlob, VADER, logistic regression, Naive Bayes | 88% accuracy, AUC 0.95 | [movie-review-sentiment-nlp](movie-review-sentiment-nlp/) |
 | Movie Recommendation System | Sparse matrix, k-nearest neighbors, cosine similarity | Top-10 similar films for any title | [movie-recommender](movie-recommender/) |
 | Handwritten Digit Recognition | CNN, TensorFlow/Keras | 98.8% test accuracy | [mnist-digit-cnn](mnist-digit-cnn/) |
-| Respiratory Illness Hospitalizations in Washington | Rate comparisons, rate ratios, linear regression | In progress | Coming soon |
+| Respiratory Illness Hospitalizations by Demographic Group (Washington) | Rate ratios, log-linear regression, 5-fold cross-validation | NH/PI residents hospitalized at 2.3 to 4.7× the White rate; cross-validated R² 0.52 | [respiratory-hospitalizations-wa](respiratory-hospitalizations-wa/) |
+| Vaccination Coverage vs. Respiratory Hospitalizations (Washington) | Spearman correlation, leave-one-group-out validation, bootstrap, priority matrix | NH/PI and Black residents combine low coverage with high hospitalization in both seasons | [vaccination-coverage-hospitalizations-wa](vaccination-coverage-hospitalizations-wa/) |
 
 ## Data
 
@@ -21,7 +22,7 @@ Datasets are not stored in this repo; several are too large for GitHub. Each pro
 
 ## Tools
 
-Python, pandas, NumPy, scikit-learn, TensorFlow/Keras, NLTK, matplotlib, seaborn, SQLite, Jupyter
+Python, pandas, NumPy, SciPy, scikit-learn, TensorFlow/Keras, NLTK, matplotlib, seaborn, SQLite, Jupyter
 
 ## Contact
 
